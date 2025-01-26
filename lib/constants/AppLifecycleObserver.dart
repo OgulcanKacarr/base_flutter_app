@@ -1,44 +1,47 @@
 import 'package:flutter/material.dart';
 
 class AppLifecycleObserver extends WidgetsBindingObserver {
-  final Function onAppBackground;
-  final Function onAppForeground;
-  final Function? onAppInactive;
-  final Function? onAppDetached;
+  final VoidCallback onBackground; // Uygulama arka plana geçtiğinde
+  final VoidCallback onForeground; // Uygulama tekrar ön plana geldiğinde
+  final VoidCallback onInactive; // Uygulama geçici olarak etkileşimsiz olduğunda
+  final VoidCallback onDetached; // Uygulama kaynaklardan ayrılmadan önce
+  final bool debug; // Debug loglarını etkinleştir
 
   AppLifecycleObserver({
-    required this.onAppBackground,
-    required this.onAppForeground,
-    this.onAppInactive,
-    this.onAppDetached,
+    required this.onBackground,
+    required this.onForeground,
+    this.onInactive = _defaultCallback,
+    this.onDetached = _defaultCallback,
+    this.debug = false,
   });
+
+  static void _defaultCallback() {
+    // Varsayılan boş fonksiyon
+  }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (debug) {
+      debugPrint('AppLifecycleObserver: $state');
+    }
+
     switch (state) {
       case AppLifecycleState.inactive:
-      // Uygulama geçici olarak etkileşimsiz olduğunda
-        if (onAppInactive != null) {
-          onAppInactive!();
-        }
+        onInactive();
         break;
       case AppLifecycleState.paused:
-      // Uygulama arka planda olduğunda
-        onAppBackground();
+        onBackground();
         break;
       case AppLifecycleState.resumed:
-      // Uygulama tekrar ön plana geldiğinde
-        onAppForeground();
+        onForeground();
         break;
       case AppLifecycleState.detached:
-      // Uygulama kaynaklardan ayrılmak üzere olduğunda
-        if (onAppDetached != null) {
-          onAppDetached!();
-        }
+        onDetached();
         break;
-
-      case AppLifecycleState.hidden:
-        // TODO: Handle this case.
+      default:
+        if (debug) {
+          debugPrint('Unhandled state: $state');
+        }
     }
   }
 }

@@ -1,8 +1,7 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:base_app/constants/AppAssets.dart';
 import 'package:flutter/material.dart';
-import '../constants/AppStrings.dart';
 import 'HomePage.dart';
 
 
@@ -12,11 +11,11 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Image.asset(AppStrings.logo),
+      splash: Image.asset(AppAssets.logo.pathString),
       nextScreen: const HomePage(),
-      splashTransition: SplashTransition.fadeTransition,
+      splashTransition: SplashTransition.scaleTransition,
       backgroundColor: Colors.black,
-      duration: 2000,
+      duration: 3000,
     );
   }
 }

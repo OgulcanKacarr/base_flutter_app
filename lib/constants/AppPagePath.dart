@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 
 enum AppPagePath {
   homePage('homePage'),
-  splashPage('splashPage');
+  splashPage('splashPage'),
+  createPage('createPage'),
+  loginPage('loginPage');
 
   final String path;
   const AppPagePath(this.path);

@@ -1,19 +1,28 @@
+import 'package:base_app/constants/AppSizes.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
-  final Widget widget;
-  const CustomCard({super.key, required this.widget});
+  final Widget child;
+  const CustomCard({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 10,
-      shadowColor: Colors.tealAccent,
-      child: widget,
+    final theme = Theme.of(context);
 
+    return Padding(
+      padding: const EdgeInsets.all(7),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        color: theme.cardColor,
+        elevation: 10,
+        shadowColor: Colors.tealAccent,
+        child: Padding(
+          padding: const EdgeInsets.all(AppSizes.paddingMedium),
+          child: child,
+        ),
+      ),
     );
   }
 }

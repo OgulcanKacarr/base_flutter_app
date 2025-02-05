@@ -8,6 +8,7 @@ class AppStrings {
   //form
   static const String email = "Email";
   static const String password = "Şifre";
+  static const String rePassword = "Şifreyi doğrula";
   static const String login = "Giriş yap";
   static const String or = "Ya da";
   static const String register = "Kayıt ol";
@@ -17,6 +18,8 @@ class AppStrings {
   //errors
   static const String emailNotEmpty = "Email boş olamaz";
   static const String passwordNotEmpty = "Şifre boş olamaz";
+  static const String enterRePasswordNotEmpty = "Şifreyi yeniden gir";
+  static const String notValidatedPassword = "Şifreler uyuşmuyor";
   static const String infoNotEmpty = "Bilgileri doldurun";
 
 

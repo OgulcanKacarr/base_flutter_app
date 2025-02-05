@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -16,15 +18,12 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-
-    return ElevatedButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white
-        ),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        child: Text(text),
       ),
     );
   }

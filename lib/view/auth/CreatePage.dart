@@ -76,7 +76,7 @@ class _CreatePageState extends ConsumerState<CreatePage> {
                 ),
 
                 CustomButton(text: AppStrings.register, onPressed: () async {
-
+                  read.create(context, _emailController.text, _passwordController.text, _rePasswordController.text);
                 }),
                 const SizedBox(
                   height: AppSizes.paddingSmall,
